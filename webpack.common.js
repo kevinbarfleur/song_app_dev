@@ -16,6 +16,14 @@ module.exports = {
         test: /\.js$/,
         exclude: ['node_modules'],
         use: [{ loader: 'babel-loader' }]
+      },
+      {
+        test: /\.styl$/i,
+        use: ['style-loader', 'css-loader', 'stylus-loader']
+      },
+      {
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        use: 'file-loader'
       }
     ]
   },

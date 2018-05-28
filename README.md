@@ -1,5 +1,5 @@
-# My Awesome React Boilerplate
-this thing is the bomb dot com
+# Ambient App
+in development
 
 ## Instructions
 `npm install`
