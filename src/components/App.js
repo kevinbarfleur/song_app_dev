@@ -28,6 +28,7 @@ class App extends Component {
     }
   }
 
+  // Launch and Pause Ambient melody
   playAmbient = () => {
     if (this.state.playing.status === false) {
       const audio = this.state.current.audio
@@ -53,6 +54,7 @@ class App extends Component {
     }
   }
 
+  // Stop and reset Ambient melody
   stopAmbient = () => {
     const audio = this.state.current.audio
     audio.pause()
@@ -66,7 +68,8 @@ class App extends Component {
     })
   }
 
-  pianoHandler = piano_refs => {
+  // Check checkbox for piano melody
+  handlePiano = piano_refs => {
     if (piano_refs.checked === true) {
       const audio = this.state.sounds.piano.audio
       audio.play()
@@ -75,6 +78,20 @@ class App extends Component {
       audio.pause()
       audio.currentTime = 0
     }
+  }
+
+  // Update current ambient sound on selector change
+  handleUpdateSelector = value => {
+    const ambient = this.state.ambient
+
+    // Value is the text atribute of the object needed ; Check for correspondance
+    Object.keys(ambient).map(element => {
+      if (ambient[element].text === value) {
+        this.setState({
+          current: ambient[element]
+        })
+      }
+    })
   }
 
   render() {
@@ -86,12 +103,15 @@ class App extends Component {
     return (
       <div className="wrapper">
         <h1 className="title">Prototype App</h1>
-        <Selector data={this.state.ambient} />
+        <Selector
+          data={this.state.ambient}
+          handleUpdateSelector={this.handleUpdateSelector}
+        />
         <Player
           playAmbient={this.playAmbient}
           stopAmbient={this.stopAmbient}
           buttonText={this.state.playing.html}
-          pianoHandler={this.pianoHandler}
+          handlePiano={this.handlePiano}
         />
       </div>
     )

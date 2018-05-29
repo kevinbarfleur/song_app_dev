@@ -20,7 +20,7 @@ class Player extends Component {
             type="checkbox"
             name="checkbox"
             value="value"
-            onChange={() => this.props.pianoHandler(this.refs.piano_checkbox)}
+            onChange={() => this.props.handlePiano(this.refs.piano_checkbox)}
           />Piano
         </label>
       </div>
