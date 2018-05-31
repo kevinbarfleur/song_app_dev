@@ -68,10 +68,12 @@ class App extends Component {
     })
   }
 
-  // Check checkbox for piano melody
-  handlePiano = piano_refs => {
+  // Check checkbox for piano melody and set volume
+  handlePiano = (piano_refs, piano_volume_refs) => {
     if (piano_refs.checked === true) {
       const audio = this.state.sounds.piano.audio
+      const volume = piano_volume_refs.value / 100
+      audio.volume = volume
       audio.play()
     } else if (piano_refs.checked === false) {
       const audio = this.state.sounds.piano.audio
@@ -80,8 +82,16 @@ class App extends Component {
     }
   }
 
+  handlePianoVolume = piano_volume_refs => {
+    const volume = piano_volume_refs.value / 100
+    const audio = this.state.sounds.piano.audio
+
+    audio.volume = volume
+  }
+
   // Update current ambient sound on selector change
   handleUpdateSelector = value => {
+    this.stopAmbient()
     const ambient = this.state.ambient
 
     // Value is the text atribute of the object needed ; Check for correspondance
@@ -112,6 +122,7 @@ class App extends Component {
           stopAmbient={this.stopAmbient}
           buttonText={this.state.playing.html}
           handlePiano={this.handlePiano}
+          handlePianoVolume={this.handlePianoVolume}
         />
       </div>
     )

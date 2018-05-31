@@ -14,15 +14,33 @@ class Player extends Component {
         <button className="element" onClick={this.props.stopAmbient}>
           Stop
         </button>
-        <label className="element">
+        <div className="container_piano">
+          <label className="element">
+            <input
+              ref="piano_checkbox"
+              type="checkbox"
+              name="checkbox"
+              value="value"
+              onChange={() =>
+                this.props.handlePiano(
+                  this.refs.piano_checkbox,
+                  this.refs.piano_volume
+                )
+              }
+            />Piano
+          </label>
           <input
-            ref="piano_checkbox"
-            type="checkbox"
-            name="checkbox"
-            value="value"
-            onChange={() => this.props.handlePiano(this.refs.piano_checkbox)}
-          />Piano
-        </label>
+            ref="piano_volume"
+            type="range"
+            min="1"
+            max="100"
+            className="slider_volume"
+            id="myRange"
+            onChange={() =>
+              this.props.handlePianoVolume(this.refs.piano_volume)
+            }
+          />
+        </div>
       </div>
     )
   }
