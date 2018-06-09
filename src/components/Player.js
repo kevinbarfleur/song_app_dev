@@ -4,16 +4,25 @@ import React, { Component } from 'react'
 // Styles
 import '../styles/player.styl'
 
+// UI Components
+import ColorButton from './ui/ColorButton'
+import Switch from './ui/Switch'
+
 class Player extends Component {
   render() {
     return (
       <div className="wrapper_player">
-        <button className="element" onClick={this.props.playAmbient}>
+        <ColorButton
+          className="button_player"
+          handleClick={this.props.playAmbient}>
           {this.props.buttonText}
-        </button>
-        <button className="element" onClick={this.props.stopAmbient}>
+        </ColorButton>
+        <ColorButton
+          className="button_player"
+          handleClick={this.props.stopAmbient}>
           Stop
-        </button>
+        </ColorButton>
+
         <div className="container_piano">
           <label className="element">
             <input
@@ -40,6 +49,7 @@ class Player extends Component {
               this.props.handlePianoVolume(this.refs.piano_volume)
             }
           />
+          <Switch />
         </div>
       </div>
     )

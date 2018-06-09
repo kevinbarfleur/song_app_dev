@@ -7,7 +7,7 @@ const data = {
   ambient: {
     orage: {
       name: 'orage',
-      text: 'Orage dans les Mamelle',
+      text: 'Orage dans les Mamelles',
       audio: new Audio(orage)
     },
     vagues: {

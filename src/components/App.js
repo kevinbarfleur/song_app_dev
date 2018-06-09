@@ -5,8 +5,12 @@ import React, { Component } from 'react'
 import '../styles/app.styl'
 
 // Components
-import Selector from './Selector'
 import Player from './Player'
+import Background from './Background'
+
+// UI Components
+import ColorButton from './ui/ColorButton'
+import Selector from './ui/Selector'
 
 // Data
 import data from '../data'
@@ -90,17 +94,10 @@ class App extends Component {
   }
 
   // Update current ambient sound on selector change
-  handleUpdateSelector = value => {
+  handleUpdateSelector = element => {
     this.stopAmbient()
-    const ambient = this.state.ambient
-
-    // Value is the text atribute of the object needed ; Check for correspondance
-    Object.keys(ambient).map(element => {
-      if (ambient[element].text === value) {
-        this.setState({
-          current: ambient[element]
-        })
-      }
+    this.setState({
+      current: element
     })
   }
 
@@ -112,18 +109,21 @@ class App extends Component {
 
     return (
       <div className="wrapper">
+        <Background />
         <h1 className="title">Prototype App</h1>
-        <Selector
-          data={this.state.ambient}
-          handleUpdateSelector={this.handleUpdateSelector}
-        />
-        <Player
-          playAmbient={this.playAmbient}
-          stopAmbient={this.stopAmbient}
-          buttonText={this.state.playing.html}
-          handlePiano={this.handlePiano}
-          handlePianoVolume={this.handlePianoVolume}
-        />
+        <div className="selector_player_wrapper">
+          <Selector
+            data={this.state.ambient}
+            handleUpdateSelector={this.handleUpdateSelector}
+          />
+          <Player
+            playAmbient={this.playAmbient}
+            stopAmbient={this.stopAmbient}
+            buttonText={this.state.playing.html}
+            handlePiano={this.handlePiano}
+            handlePianoVolume={this.handlePianoVolume}
+          />
+        </div>
       </div>
     )
   }
