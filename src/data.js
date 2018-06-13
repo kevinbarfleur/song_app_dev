@@ -6,7 +6,7 @@ import piano from './music/piano.mp3'
 const data = {
   ambient: {
     orage: {
-      name: 'orage',
+      name: 'orages',
       text: 'Orage dans les Mamelles',
       audio: new Audio(orage)
     },
