@@ -1,7 +1,7 @@
 # Ambient App
-using React
+using React<br>
 in development
 
 ## Instructions
-`npm install`
+`npm install`<br>
 `npm start`
